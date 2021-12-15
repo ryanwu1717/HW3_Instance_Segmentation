@@ -24,7 +24,8 @@ Using Anaconda and pytorch to implement this method.
     git clone https://github.com/matterport/Mask_RCNN.git
 
 ## Architecture
-![image](https://github.com/eddieczc/Image-Processing-via-deep-learning/blob/master/HW3_Instance_Segmentation/Images/Detectron2_Architecture1.PNG) <br> 
+![image](https://github.com/ryanwu1717/HW3_Instance_Segmentation/blob/main/result/architecture1.png) <br> 
+![image](https://github.com/ryanwu1717/HW3_Instance_Segmentation/blob/main/result/architecture2.png) <br> 
 
 ## Implement
 The code is programing on 
@@ -41,7 +42,13 @@ Train the model
 ## Testing
 `python3 samples/coco/coco.py evaluate --dataset=/path/to/coco/ --model=last`
 
-##Result
+## Results
+![image](https://github.com/ryanwu1717/HW3_Instance_Segmentation/blob/main/result/1.png) <br> 
+![image](https://github.com/ryanwu1717/HW3_Instance_Segmentation/blob/main/result/2.png) <br> 
+![image](https://github.com/ryanwu1717/HW3_Instance_Segmentation/blob/main/result/3.png) <br> 
+![image](https://github.com/ryanwu1717/HW3_Instance_Segmentation/blob/main/result/4.png) <br> 
+![image](https://github.com/ryanwu1717/HW3_Instance_Segmentation/blob/main/result/5.png) <br> 
+![image](https://github.com/ryanwu1717/HW3_Instance_Segmentation/blob/main/result/6.png) <br> 
 
 ## Reference
 #### Detectron2 (https://github.com/matterport/Mask_RCNN)
