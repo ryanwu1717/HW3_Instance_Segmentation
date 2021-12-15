@@ -484,93 +484,75 @@ def detect(model, dataset_dir, subset):
     t_start = time.time()
     results = []
     cocodt=[]
-
-    # tmporder=[]
-    # f = open('dataset/test_img_ids.json')
-    # data = json.load(f)
-    # for testimage in data:
-    #     print(testimage)
-    #     image_id = testimage['file_name']
-    #     # tmpdir = "dataset/test/"+file_name
-    #     # image = dataset.load_image(tmpdir)。
-    #     tmporder.append(testimage['file_name'])
-    # print(tmporder)
-    # print(dataset.image_ids)
     
-    # for i, image_id in enumerate( dataset.image_ids):
+    for i, image_id in enumerate( dataset.image_ids):
 
-    #     # Load image
-    #     image = dataset.load_image(image_id)
+        # Load image
+        image = dataset.load_image(image_id)
 
-    #     # Run detection
-    #     t = time.time()
-    #     r = model.detect([image], verbose=0)[0]
-    #     t_prediction += (time.time() - t)
-    #     source_id = dataset.image_info[image_id]["id"]
-    #     rle = mask_to_rle(source_id, r["masks"], r["scores"])
-    #     # print( rle)
-    #     # Convert results to COCO format
-    #     # Cast masks to uint8 because COCO tools errors out on bool
-    #     coco_image_ids = [dataset.image_info[image_id]["id"] for id in  dataset.image_ids]
-    #     # coco_image_ids = dataset.image_info[image_id]["id"]
-    #     # print( r["masks"])
-    #     image_results = build_coco_results(dataset, coco_image_ids,
-    #                                        r["rois"], r["class_ids"],
-    #                                        r["scores"],
-    #                                        r["masks"].astype(np.uint8))
-    #     results.extend(image_results)
-    #     # print(image_results)
-    #     cocodt.append(image_results)
+        # Run detection
+        t = time.time()
+        r = model.detect([image], verbose=0)[0]
+        t_prediction += (time.time() - t)
+        source_id = dataset.image_info[image_id]["id"]
+        rle = mask_to_rle(source_id, r["masks"], r["scores"])
+        # print( rle)
+        # Convert results to COCO format
+        # Cast masks to uint8 because COCO tools errors out on bool
+        coco_image_ids = [dataset.image_info[image_id]["id"] for id in  dataset.image_ids]
+        # coco_image_ids = dataset.image_info[image_id]["id"]
+        # print( r["masks"])
+        image_results = build_coco_results(dataset, coco_image_ids,
+                                           r["rois"], r["class_ids"],
+                                           r["scores"],
+                                           r["masks"].astype(np.uint8))
+        results.extend(image_results)
+        # print(image_results)
+        cocodt.append(image_results)
   
 
 
    
-    # # Load results. This modifies results with additional attributes.
-    # # coco_results = coco.loadRes(results)
-    # save_fn = 'answer.json'
-    # file = open(save_fn,'w',encoding='utf-8')
-    # file.write(json.dumps(results,cls=MyEncoder,indent=4))
-    # file.close()
+    # Load results. This modifies results with additional attributes.
+    # coco_results = coco.loadRes(results)
+    save_fn = 'answer.json'
+    file = open(save_fn,'w',encoding='utf-8')
+    file.write(json.dumps(results,cls=MyEncoder,indent=4))
+    file.close()
 
-    # Evaluate
-    # cocoEval = COCOeval(coco, coco_results, eval_type)
-    # cocoEval.params.imgIds = coco_image_ids
-    # cocoEval.evaluate()
-    # cocoEval.accumulate()
-    # cocoEval.summarize()
-    for image_id in dataset.image_ids:
-        print(image_id)
-        # Load image and run detection
-        image = dataset.load_image(image_id)
-        # print(image)
-        # Detect objects
-        r = model.detect([image], verbose=0)[0]
-        # print(r["masks"])
-        # Encode image to RLE. Returns a string of multiple lines
-        source_id = dataset.image_info[image_id]["id"]
-        rle = mask_to_rle(source_id, r["masks"], r["scores"])
-        # print( r["masks"])
-        submission.append(rle)
-        # if len(r["masks"].ndim) == 3:
-        #     rle =  _mask.encode(r["masks"])
-        # elif len(r["masks"].ndim) == 2:
-        #     h, w = r["masks"].shape
-        #     rle =  _mask.encode(r["masks"].reshape((h, w, 1), order='F'))[0] 
-        # print(rle)
-        # Save image with masks
-        visualize.display_instances(
-            image, r['rois'], r['masks'], r['class_ids'],
-            dataset.class_names, r['scores'],
-            show_bbox=True, show_mask=True,
-            title="Predictions")
-        plt.savefig("{}/{}.png".format(submit_dir, dataset.image_info[image_id]["id"]))
+    # for image_id in dataset.image_ids:
+    #     print(image_id)
+    #     # Load image and run detection
+    #     image = dataset.load_image(image_id)
+    #     # print(image)
+    #     # Detect objects
+    #     r = model.detect([image], verbose=0)[0]
+    #     # print(r["masks"])
+    #     # Encode image to RLE. Returns a string of multiple lines
+    #     source_id = dataset.image_info[image_id]["id"]
+    #     rle = mask_to_rle(source_id, r["masks"], r["scores"])
+    #     # print( r["masks"])
+    #     submission.append(rle)
+    #     # if len(r["masks"].ndim) == 3:
+    #     #     rle =  _mask.encode(r["masks"])
+    #     # elif len(r["masks"].ndim) == 2:
+    #     #     h, w = r["masks"].shape
+    #     #     rle =  _mask.encode(r["masks"].reshape((h, w, 1), order='F'))[0] 
+    #     # print(rle)
+    #     # Save image with masks
+    #     visualize.display_instances(
+    #         image, r['rois'], r['masks'], r['class_ids'],
+    #         dataset.class_names, r['scores'],
+    #         show_bbox=True, show_mask=True,
+    #         title="Predictions")
+    #     plt.savefig("{}/{}.png".format(submit_dir, dataset.image_info[image_id]["id"]))
 
-    # Save to csv file
-    submission = "ImageId,EncodedPixels\n" + "\n".join(submission)
-    file_path = os.path.join(submit_dir, "submit.csv")
-    with open(file_path, "w") as f:
-        f.write(submission)
-    print("Saved to ", submit_dir)
+    # # Save to csv file
+    # submission = "ImageId,EncodedPixels\n" + "\n".join(submission)
+    # file_path = os.path.join(submit_dir, "submit.csv")
+    # with open(file_path, "w") as f:
+    #     f.write(submission)
+    # print("Saved to ", submit_dir)
 
 
 ############################################################
