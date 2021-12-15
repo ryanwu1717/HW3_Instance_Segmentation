@@ -14,8 +14,7 @@ There is the outlines in this compitions <br>
 3. [Implement](#Implement) <br>
 4. [Testing](#Testing) <br>
 5. [Results](#Results)<br>
-6. [Make-Submission](#Make-Submission)<br>
-7. [Reference](#Reference)<br>
+6. [Reference](#Reference)<br>
 
 ## Installation
 Using Anaconda and pytorch to implement this method.
