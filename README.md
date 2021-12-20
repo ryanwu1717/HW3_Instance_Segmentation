@@ -2,6 +2,8 @@
 
 code for  Instance Segmentation Challenge. <br>
 
+download the weight [here](https://drive.google.com/file/d/1GIxYkBt7bXU22Rc6IoRF6_0PHRd4GRBL/view?usp=sharing)
+
 ## Hardware
 ● Windows 10 <br>
 ● Intel(R) CORE i7 7th Gen @ 4.00GHz <br>
