@@ -2,7 +2,9 @@
 
 code for  Instance Segmentation Challenge. <br>
 
-download the weight [here](https://drive.google.com/file/d/1GIxYkBt7bXU22Rc6IoRF6_0PHRd4GRBL/view?usp=sharing)
+download the pretrained weight [here](https://github.com/matterport/Mask_RCNN/releases/download/v2.0/mask_rcnn_coco.h5)
+
+download the last weight [here](https://drive.google.com/file/d/1GIxYkBt7bXU22Rc6IoRF6_0PHRd4GRBL/view?usp=sharing)
 
 ## Hardware
 ● Windows 10 <br>
